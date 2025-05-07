@@ -1,5 +1,3 @@
-import pytest
-
 from adagrams.game import score_word, get_highest_word_score
 
 def test_get_highest_word_score_accurate():
@@ -8,9 +6,9 @@ def test_get_highest_word_score_accurate():
 
     # Act
     best_word = get_highest_word_score(words)
-    # NOTE: best_word can be a tuple or a list
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
 
@@ -22,6 +20,7 @@ def test_get_highest_word_score_accurate_unsorted_list():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
 
@@ -33,6 +32,7 @@ def test_get_highest_word_tie_prefers_shorter_word():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert score_word(words[0]) == 12
     assert score_word(words[1]) == 12
     assert best_word[0] == "WWW"
@@ -46,6 +46,7 @@ def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert score_word(words[0]) == 12
     assert score_word(words[1]) == 12
     assert best_word[0] == "WWW"
@@ -59,6 +60,7 @@ def test_get_highest_word_tie_prefers_ten_letters():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
 
@@ -70,6 +72,7 @@ def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
 
@@ -81,6 +84,7 @@ def test_get_highest_word_tie_same_length_prefers_first():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert score_word(words[0]) == 18
     assert score_word(words[1]) == 18
     assert best_word[0] == words[0]
@@ -94,6 +98,7 @@ def test_get_highest_word_many_ties_pick_first_ten_letters():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
 
@@ -105,6 +110,7 @@ def test_get_highest_word_many_ties_pick_shortest():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert best_word[0] == "JQ"
     assert best_word[1] == 18
 
@@ -116,5 +122,6 @@ def test_get_highest_word_does_not_return_early_after_first_tiebreaker():
     best_word = get_highest_word_score(words)
 
     # Assert
+    assert isinstance(best_word, tuple)
     assert best_word[0] == "JQ"
     assert best_word[1] == 18
