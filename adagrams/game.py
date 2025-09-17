@@ -29,15 +29,23 @@ LETTER_POOL = {
     'Z': 1
 }
 
-LETTER_LIST = list(LETTER_POOL.keys())
+def create_pool_list():
+    pool_list = []
+    for letter, number_of_tiles in LETTER_POOL.items():
+        for index in range(0, number_of_tiles):
+            pool_list.append(letter)
+    return pool_list
+
 
 def draw_letters():
+    pool_list = create_pool_list()
+    print(f'Letter pool: {pool_list}')
     hand = []
     letter_freq = {}
     draw = True
     while draw:
-        letter_index = randint(0, 25) #Assigns the index of the letter based on random integer
-        letter = LETTER_LIST[letter_index] #Accesses the letter at index
+        letter_index = randint(0, len(pool_list)-1) #Assigns the index of the letter based on random integer
+        letter = pool_list[letter_index] #Accesses the letter at index
 
         if letter in letter_freq and letter_freq[letter] == LETTER_POOL[letter]:
             continue
@@ -51,6 +59,7 @@ def draw_letters():
         #Returns the hand once it has 10 letters
         if len(hand) == 10:
             draw = False
+            print(f'Hand:{hand}')
             return hand
 
 
